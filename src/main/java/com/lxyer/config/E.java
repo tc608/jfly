@@ -8,7 +8,6 @@ public class E {
     public enum DynamicAttr {
         //table,id_k,gk, cate
         NEWS("dyna_attr", "contentId", "tid", 1),
-        PRODUCTION("dyna_attr", "contentId", "tid", 2),
         USER("dyna_attr", "userId", "tid", 3)
         ;
         private String table;
