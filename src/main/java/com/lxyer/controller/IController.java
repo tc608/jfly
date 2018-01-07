@@ -3,6 +3,8 @@ package com.lxyer.controller;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.*;
+import com.jfinal.plugin.redis.Cache;
+import com.jfinal.plugin.redis.Redis;
 import com.lxyer.config.E;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.Map;
  * Created by Lxyer at 2017/9/10 13:55.
  */
 public class IController extends Controller {
+
+    public static final Cache cache = Redis.use();
 
     public Kv getParams(String... key) {
         Kv kv = Kv.create();

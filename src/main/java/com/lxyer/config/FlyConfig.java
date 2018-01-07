@@ -36,6 +36,7 @@ public class FlyConfig extends JFinalConfig {
         me.setBaseTemplatePath(PathKit.getWebRootPath());
 
         me.addSharedFunction("/WEB-INF/_t/layout.html");
+        me.addSharedObject("lxyKit", new LxyKit());
     }
 
     @Override
