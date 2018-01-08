@@ -170,11 +170,10 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `userId` int(11) NOT NULL COMMENT '[用户id]',
+  `userId` int(11) NOT NULL AUTO_INCREMENT COMMENT '[用户id]',
   `username` varchar(32) NOT NULL COMMENT '[登录名]',
-  `password` varchar(64) NOT NULL COMMENT '[密码]',
   `sex` int(2) DEFAULT '1' COMMENT '[性别]默认1 1男，2女',
-  `phone` varchar(32) NOT NULL COMMENT '[电话号码]',
+  `phone` varchar(32) DEFAULT '' COMMENT '[电话号码]',
   `nickname` varchar(64) DEFAULT '' COMMENT '[昵称]',
   `avatar` varchar(128) DEFAULT '' COMMENT '[头像地址]',
   `realname` varchar(32) DEFAULT '' COMMENT '[真实姓名]',
@@ -184,7 +183,7 @@ CREATE TABLE `user` (
   `city` varchar(64) NOT NULL DEFAULT '' COMMENT '[所在城市]',
   `status` int(1) NOT NULL DEFAULT '1' COMMENT '[状态]',
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100012 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,8 +192,33 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (100001,'lxy208@126.com','fcea920f7412b5da7be0cf42b8c93759',1,'18515190967','绝尘','http://img.1216.top/art/u93.png','','lxy208@126.com',1507677533071,'','',1),(100002,'237809797@qq.com','fcea920f7412b5da7be0cf42b8c93759',2,'13121880915','晓','http://img.1216.top/art/u36.png','','237809797@qq.com',1509196823551,'','',1),(100003,'237809796@qq.com','fcea920f7412b5da7be0cf42b8c93759',2,'','nick','http://img.1216.top/bbs/20171203103651.gif','','237809796@qq.com',1511851218332,'态度决定高度。','北京',1),(100004,'vip@qq.com','25d55ad283aa400af464c76d713c07ad',1,'','qq','/res/images/avatar/3.jpg','','vip@qq.com',1512954927558,'','',1),(100005,'12@qq.com','e10adc3949ba59abbe56e057f20f883e',1,'','123','/res/images/avatar/13.jpg','','12@qq.com',1512957064362,'','',1),(100006,'10000@qq.com','0d124d13699173f26a6519631cfe6e52',1,'','na','/res/images/avatar/9.jpg','','10000@qq.com',1512987234013,'','',1),(100007,'syy@qq.com','6fb327cfe8bd8268d7e1a8468d88e8d2',1,'','syy','/res/images/avatar/13.jpg','','syy@qq.com',1513305537321,'','',1),(100008,'555@qq.com','5b1b68a9abf4d2cd155c81a9225fd158',1,'','555','/res/images/avatar/19.jpg','','555@qq.com',1513355350396,'','',1),(100009,'2442669938@qq.com','25f9e794323b453885f5181f1b624d0b',1,'','iLvc','/res/images/avatar/10.jpg','','2442669938@qq.com',1513512637440,'','',1),(100010,'316034712@qq.com','af73fabc0e20d29ce37ad7bb66e7a4ff',1,'','OoxiaobinoO','/res/images/avatar/4.jpg','','316034712@qq.com',1513840912828,'','',1);
+INSERT INTO `user` VALUES (100001,'lxy208@126.com',1,'18515190967','绝尘','http://img.1216.top/art/u93.png','','lxy208@126.com',1507677533071,'','',1),(100002,'237809797@qq.com',2,'13121880915','晓','http://img.1216.top/art/u36.png','','237809797@qq.com',1509196823551,'','',1),(100003,'237809796@qq.com',2,'','nick','http://img.1216.top/bbs/20171203103651.gif','','237809796@qq.com',1511851218332,'态度决定高度。','北京',1),(100004,'vip@qq.com',1,'','qq','/res/images/avatar/3.jpg','','vip@qq.com',1512954927558,'','',1),(100005,'12@qq.com',1,'','123','/res/images/avatar/13.jpg','','12@qq.com',1512957064362,'','',1),(100006,'10000@qq.com',1,'','na','/res/images/avatar/9.jpg','','10000@qq.com',1512987234013,'','',1),(100007,'syy@qq.com',1,'','syy','/res/images/avatar/13.jpg','','syy@qq.com',1513305537321,'','',1),(100008,'555@qq.com',1,'','555','/res/images/avatar/19.jpg','','555@qq.com',1513355350396,'','',1),(100009,'2442669938@qq.com',1,'','iLvc','/res/images/avatar/10.jpg','','2442669938@qq.com',1513512637440,'','',1),(100010,'316034712@qq.com',1,'','OoxiaobinoO','/res/images/avatar/4.jpg','','316034712@qq.com',1513840912828,'','',1),(100011,'123@qq.com',1,'','nin','/res/images/avatar/6.jpg','','123@qq.com',1515386623573,'','',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_pwd`
+--
+
+DROP TABLE IF EXISTS `user_pwd`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_pwd` (
+  `userId` int(11) NOT NULL,
+  `pwd` varchar(64) DEFAULT NULL,
+  `updateTime` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户密码表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_pwd`
+--
+
+LOCK TABLES `user_pwd` WRITE;
+/*!40000 ALTER TABLE `user_pwd` DISABLE KEYS */;
+INSERT INTO `user_pwd` VALUES (100001,'fcea920f7412b5da7be0cf42b8c93759',1507677533071),(100002,'fcea920f7412b5da7be0cf42b8c93759',1509196823551),(100003,'fcea920f7412b5da7be0cf42b8c93759',1511851218332),(100004,'25d55ad283aa400af464c76d713c07ad',1512954927558),(100005,'e10adc3949ba59abbe56e057f20f883e',1512957064362),(100006,'0d124d13699173f26a6519631cfe6e52',1512987234013),(100007,'6fb327cfe8bd8268d7e1a8468d88e8d2',1513305537321),(100008,'5b1b68a9abf4d2cd155c81a9225fd158',1513355350396),(100009,'25f9e794323b453885f5181f1b624d0b',1513512637440),(100010,'af73fabc0e20d29ce37ad7bb66e7a4ff',1513840912828),(100011,'FCEA920F7412B5DA7BE0CF42B8C93759',1515386623627);
+/*!40000 ALTER TABLE `user_pwd` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -206,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-07 16:06:47
+-- Dump completed on 2018-01-08 12:46:16
