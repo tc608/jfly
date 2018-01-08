@@ -13,4 +13,9 @@ public class User extends BaseUser<User> {
     public String sqlSpace() {
         return "user";
     }
+
+    @Override
+    public User getDao() {
+        return dao;
+    }
 }

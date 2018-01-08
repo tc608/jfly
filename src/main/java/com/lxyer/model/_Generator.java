@@ -32,12 +32,13 @@ public class _Generator {
 	 * 部分功能使用 Db + Record 模式实现，无需生成 model 的 table 在此配置
 	 */
 	private static String[] excludedTable = {
-			/*"comment",
+			"comment",
 			"content",
 			"content_item",
 			"dyna_attr",
-			"tree",
-			"user"*/
+			"act_log",
+			"user",
+			"user_pwd"
 	};
 
 	/**

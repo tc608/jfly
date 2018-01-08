@@ -1,5 +1,9 @@
 package com.lxyer.config;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.HexBin;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -29,5 +33,21 @@ public final class LxyKit {
         else
             return new SimpleDateFormat("yyyy-MM-dd").format(time);
 
+    }
+
+    public static String md5IfNeed(String password){
+        if (password == null || password.isEmpty()) return "";
+        if (password.length() == 32) return password;
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        byte[] bytes = password.trim().getBytes();
+        bytes = md5.digest(bytes);
+
+        return HexBin.encode(bytes);
     }
 }

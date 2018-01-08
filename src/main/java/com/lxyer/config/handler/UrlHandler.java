@@ -12,6 +12,8 @@ public class UrlHandler extends Handler {
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
 
+        if (target.endsWith(".html")) target = target.replace(".html", "");
+
         next.handle(target, request, response, isHandled);
     }
 }

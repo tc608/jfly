@@ -526,7 +526,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util', 'face'], f
   });
     //退出登录
     $(".logout").on('click', function () {
-        $.post("/os/user/logout",{},function (data) {
+        $.post("/user/login/out",{},function (data) {
             location.reload();
         });
     });

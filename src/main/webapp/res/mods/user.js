@@ -284,13 +284,13 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function(exports){
   form.on('submit(login)', function(data){
       var fdata = data.field;
 
-      $.post("/os/user/login",{
-          bean:JSON.stringify({username:fdata.username, password:fdata.password})
+      $.post("/user/login/check",{
+          username:fdata.username
+          ,pwd:fdata.password
           ,vercode:fdata.vercode
       },function (data) {
-          data = JSON.parse(data);
-          if(data.retcode != 0){
-              layer.msg(data.retinfo);
+          if(data.code != 1){
+              layer.msg(data.msg);
               return false;
           }
           location.href = "/";
@@ -301,16 +301,13 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function(exports){
       data = data.field;
       var bean = {
           email:data.email
-          ,password:data.pass
+          ,pwd:data.pass
           ,nickname:data.nickname
       };
 
-      $.post("/os/user/register",{
-          bean:JSON.stringify(bean)
-      },function (data) {
-        data = JSON.parse(data);
-        if(data.retcode != 0){
-          layer.msg(data.retinfo);
+      $.post("/user/create",bean,function (data) {
+        if(data.code != 1){
+          layer.msg(data.msg);
           return false;
         }
         layer.msg("注册成功",{icon:16, shade: 0.1, time:0});
@@ -352,7 +349,7 @@ layui.define(['laypage', 'fly', 'element', 'flow'], function(exports){
       layer.msg('密码修改成功，重新登录', {
           time: 2000 //2秒关闭（如果不配置，默认是3秒）
       }, function(){
-          $.post('/os/user/logout',{},function () {
+          $.post('/user/login/out',{},function () {
              location.reload();
           });
       });

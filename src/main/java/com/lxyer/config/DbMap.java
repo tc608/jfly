@@ -27,6 +27,7 @@ public class DbMap {
 		// Composite Primary Key order: tid,cate,attr
 		arp.addMapping("dyna_attr", "tid,cate,attr", DynaAttr.class);
 		arp.addMapping("user", "userId", User.class);
+        arp.addMapping("user_pwd", "userId", UserPwd.class);
 	}
 
     public static void addSqlTemplate(ActiveRecordPlugin arp) {

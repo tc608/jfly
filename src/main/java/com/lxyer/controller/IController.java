@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.*;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
 import com.lxyer.config.E;
+import com.lxyer.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,22 @@ import java.util.Map;
 public class IController extends Controller {
 
     public static final Cache cache = Redis.use();
+
+    public void index(){
+        String para = getPara(0, "index");
+
+        render(para + ".html");
+    }
+
+
+    public Integer getUserId() {
+        User user = getUser();
+        return user == null ? null : user.getUserId();
+    }
+
+    public User getUser(){
+        return getSessionAttr("user");
+    }
 
     public Kv getParams(String... key) {
         Kv kv = Kv.create();

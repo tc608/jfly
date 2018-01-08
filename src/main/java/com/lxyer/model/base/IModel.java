@@ -1,36 +1,33 @@
 package com.lxyer.model.base;
 
 import com.jfinal.kit.Kv;
-import com.jfinal.plugin.activerecord.Db;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.activerecord.SqlPara;
+import com.jfinal.plugin.activerecord.*;
 
 import java.util.List;
 
 /**
  * Created by JUECHENG at 2018/1/7 16:52.
  */
-public interface IModel<M extends IModel<M>> {
+public interface IModel<M extends Model<M>> {
 
     String sqlSpace();
+    M getDao();
 
     default List<M> findList(Kv kv){
-        SqlPara sqlPara = Db.getSqlPara(sqlSpace()+".list", kv);
+        SqlPara sqlPara = getDao().getSqlPara(sqlSpace()+".list", kv);
 
-        return (List) Db.find(sqlPara);
+        return getDao().find(sqlPara);
     }
 
-    default Record findFirst(Kv kv){
+    default M findFirst(Kv kv){
         SqlPara sqlPara = Db.getSqlPara(sqlSpace()+".list", kv);
-
-        return Db.findFirst(sqlPara);
+        return getDao().findFirst(sqlPara);
     }
 
     default Page<M> findPage(int pn, int ps, Kv kv){
         SqlPara sqlPara = Db.getSqlPara(sqlSpace()+".list", kv);
 
-        return (Page) Db.paginate(pn, ps, sqlPara);
+        return getDao().paginate(pn, ps, sqlPara);
     }
 
 }

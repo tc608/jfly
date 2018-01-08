@@ -25,14 +25,6 @@ public abstract class BaseUser<M extends BaseUser<M>> extends Model<M> implement
 		return getStr("username");
 	}
 
-	public void setPassword(java.lang.String password) {
-		set("password", password);
-	}
-	
-	public java.lang.String getPassword() {
-		return getStr("password");
-	}
-
 	public void setSex(java.lang.Integer sex) {
 		set("sex", sex);
 	}

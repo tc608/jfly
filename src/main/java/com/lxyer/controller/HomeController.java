@@ -58,25 +58,5 @@ public class HomeController extends IController {
         render("jie/index.html");
     }
 
-    /**
-     * 帖子详情
-     */
-    public void jie(){
-        int contentId = getParaToInt(0);
-
-        //ContentInfo content = contentService.contentInfo(sessionid, contentid);
-        //Sheet<CommentInfo> comments = commentService.commentQuery(request.getSessionid(false) ,contentid, new Flipper().limit(30));
-
-        Record content = Content.dao.findFirst(Kv.by("contentId", contentId));
-
-        //热议
-        List<Content> hotReply = Content.dao.findPage(1, 8, Kv.by("order", "replyNum DESC")).getList();
-
-        setAttr("bean", content);
-        setAttr("hotReply", hotReply);
-
-        render("jie/detail.html");
-    }
-
 
 }

@@ -2,6 +2,7 @@ package com.lxyer.config.route;
 
 import com.jfinal.config.Routes;
 import com.lxyer.controller.HomeController;
+import com.lxyer.controller.JieController;
 import com.lxyer.controller.UserController;
 
 /**
@@ -14,5 +15,6 @@ public class SiteRoute extends Routes {
 
         add("/", HomeController.class);
         add("/user", UserController.class);
+        add("/jie", JieController.class);
     }
 }

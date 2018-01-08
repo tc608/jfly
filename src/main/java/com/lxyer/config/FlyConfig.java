@@ -1,6 +1,9 @@
 package com.lxyer.config;
 
+import com.jfinal.aop.Interceptor;
+import com.jfinal.aop.Invocation;
 import com.jfinal.config.*;
+import com.jfinal.core.Controller;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -57,7 +60,14 @@ public class FlyConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors me) {
-        me.add(new LoginInterceptor());
+        me.add(new Interceptor() {
+            @Override
+            public void intercept(Invocation inv) {
+                Controller controller = inv.getController();
+                controller.setAttr("mine", controller.getSessionAttr("user"));
+                inv.invoke();
+            }
+        });
     }
 
     @Override

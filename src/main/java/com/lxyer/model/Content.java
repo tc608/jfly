@@ -13,4 +13,9 @@ public class Content extends BaseContent<Content> {
     public String sqlSpace() {
         return "content";
     }
+
+    @Override
+    public Content getDao() {
+        return dao;
+    }
 }
