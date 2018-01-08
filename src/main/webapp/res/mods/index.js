@@ -72,10 +72,10 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util', 'face'], f
           if(typeof res === 'string'){
             res = JSON.parse(res);
           }
-          if(res.retcode === 0) {
+          if(res.code === 1) {
             success && success(res);
           } else {
-            layer.msg(res.retinfo || res.code, {shift: 6});
+            layer.msg(res.msg || res.code, {shift: 6});
             options.error && options.error();
           }
         }, error: function(e){

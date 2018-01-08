@@ -24,7 +24,7 @@ public class LoginInterceptor implements Interceptor {
             if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))){
 
             }else {
-                controller.render("/user/login.html");
+                controller.redirect("/user/login");
             }
         }else {
             inv.invoke();

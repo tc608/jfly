@@ -77,7 +77,7 @@ layui.define(['fly','laypage'], function(exports){
     del: function(div){
       layer.confirm('确认删除该求解么？', function(index){
         layer.close(index);
-        fly.json('/os/content/set', {
+        fly.json('/content/set', {
             id: div.data('id')
             ,v: -1
             ,field:"status"
@@ -90,7 +90,7 @@ layui.define(['fly','laypage'], function(exports){
     //设置置顶、状态
     ,set: function(div){
       var othis = $(this);
-      fly.json('/os/content/set', {
+      fly.json('/content/set', {
         id: div.data('id')
         ,v: othis.attr('v')
         ,field: othis.attr('field')
@@ -102,7 +102,7 @@ layui.define(['fly','laypage'], function(exports){
     //收藏
     ,collect: function(div){
       var othis = $(this), type = othis.data('type');
-      fly.json('/os/content/collect', {
+      fly.json('/content/collect', {
           contentId: div.data('id')
           ,ok: type === 'add'? 1:-1
       }, function(res){
@@ -231,13 +231,9 @@ layui.define(['fly','laypage'], function(exports){
   form.on('submit(jie-add)', function(data){
       var bean = {};
       ["contentId","title", "content", "type"].forEach(function (value) {
-        bean[value] = data.field[value];
+        bean["content."+value] = data.field[value];
       });
-      console.log(bean);
-
-      fly.json("/os/content/save",{
-          bean:JSON.stringify(bean)
-      },function (res) {
+      fly.json("/jie/save",bean,function (res) {
           layer.msg("发布成功",{time:2000},function () {
               location.href = "/";
           });
@@ -251,7 +247,7 @@ layui.define(['fly','laypage'], function(exports){
       });
       console.log(bean);
 
-      fly.json("/os/comment/save",{
+      fly.json("/comment/save",{
           bean:JSON.stringify(bean)
       },function (res) {
           layer.msg("回复成功",{time:2000},function () {
