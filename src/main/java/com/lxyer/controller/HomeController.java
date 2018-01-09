@@ -2,7 +2,6 @@ package com.lxyer.controller;
 
 import com.jfinal.kit.Kv;
 import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
 import com.lxyer.model.Content;
 import com.lxyer.model.User;
 

@@ -19,3 +19,12 @@
     ORDER BY createTime DESC
   #end
 #end
+
+### 更新评论数 para:[contentId]
+#sql("content.upReplyNum")
+  UPDATE content c SET c.replyNum=
+    (SELECT COUNT(*) FROM comment WHERE contentId=c.contentId AND status=1)
+  #if(contentId)
+    WHERE c.contentId=#(contentId)
+  #end
+#end

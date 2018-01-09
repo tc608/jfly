@@ -1,6 +1,6 @@
 package com.lxyer.controller;
 
-import com.lxyer.config.JsonBean;
+import com.lxyer.config.JBean;
 import com.lxyer.model.User;
 import com.lxyer.service.UserService;
 
@@ -15,7 +15,7 @@ public class UserController extends IController {
      * 注册
      */
     public void create(){
-        JsonBean bean = new JsonBean(1);
+        JBean bean = new JBean(1);
         String email = getPara("email");
         String pwd = getPara("pwd");
         String nickname = getPara("nickname");
@@ -39,10 +39,10 @@ public class UserController extends IController {
             return;
         }else if ("out".equals(para)){
             removeSessionAttr("user");
-            renderJson(JsonBean.success());
+            renderJson(JBean.success);
             return;
         }
-        JsonBean bean = new JsonBean(1);
+        JBean bean = new JBean(1);
         String username = getPara("username");
         String pwd = getPara("pwd");
 
@@ -73,7 +73,7 @@ public class UserController extends IController {
      * 修改密码
      */
     public void repwd(){
-        JsonBean bean = new JsonBean(1);
+        JBean bean = new JBean(1);
         String pwd = getPara("pwd");
 
         try {

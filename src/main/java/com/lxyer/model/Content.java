@@ -1,5 +1,7 @@
 package com.lxyer.model;
 
+import com.jfinal.kit.Kv;
+import com.jfinal.plugin.activerecord.Db;
 import com.lxyer.model.base.BaseContent;
 
 /**
@@ -17,5 +19,9 @@ public class Content extends BaseContent<Content> {
     @Override
     public Content getDao() {
         return dao;
+    }
+
+    public static void upReplyNum(int contentId){
+        Db.update(Db.getSqlPara("content.upReplyNum", Kv.by("contentId", contentId)));
     }
 }

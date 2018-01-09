@@ -7,5 +7,15 @@ import com.lxyer.model.base.BaseComment;
  */
 @SuppressWarnings("serial")
 public class Comment extends BaseComment<Comment> {
-	
+	public static final Comment dao = new Comment().dao();
+
+	@Override
+	public String sqlSpace() {
+		return "comment";
+	}
+
+	@Override
+	public Comment getDao() {
+		return dao;
+	}
 }

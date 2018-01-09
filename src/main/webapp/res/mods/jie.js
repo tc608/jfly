@@ -75,12 +75,10 @@ layui.define(['fly','laypage'], function(exports){
   gather.jieAdmin = {
     //删求解
     del: function(div){
-      layer.confirm('确认删除该求解么？', function(index){
+      layer.confirm('确认删除该帖子吗？', function(index){
         layer.close(index);
-        fly.json('/content/set', {
-            id: div.data('id')
-            ,v: -1
-            ,field:"status"
+        fly.json('/jie/del', {
+            contentId: div.data('id')
         }, function(res){
             location.href= "/";
         });
@@ -90,7 +88,7 @@ layui.define(['fly','laypage'], function(exports){
     //设置置顶、状态
     ,set: function(div){
       var othis = $(this);
-      fly.json('/content/set', {
+      fly.json('/jie/set', {
         id: div.data('id')
         ,v: othis.attr('v')
         ,field: othis.attr('field')
@@ -102,7 +100,7 @@ layui.define(['fly','laypage'], function(exports){
     //收藏
     ,collect: function(div){
       var othis = $(this), type = othis.data('type');
-      fly.json('/content/collect', {
+      fly.json('/jie/collect', {
           contentId: div.data('id')
           ,ok: type === 'add'? 1:-1
       }, function(res){
@@ -139,7 +137,7 @@ layui.define(['fly','laypage'], function(exports){
   gather.jiedaActive = {
     zan: function(li){ //赞
       var othis = $(this), ok = othis.hasClass('zanok');
-      fly.json('/os/comment/support', {
+      fly.json('/comment/support', {
           commentId: li.data('id')
           ,ok: ok?-1:1
       }, function(res){
@@ -243,13 +241,10 @@ layui.define(['fly','laypage'], function(exports){
   form.on('submit(jie-reply)', function(data){
       var bean = {};
       ["contentId","pid", "content"].forEach(function (value) {
-        bean[value] = data.field[value];
+        bean["comment."+value] = data.field[value];
       });
-      console.log(bean);
 
-      fly.json("/comment/save",{
-          bean:JSON.stringify(bean)
-      },function (res) {
+      fly.json("/comment/save",bean,function (res) {
           layer.msg("回复成功",{time:2000},function () {
               //location.href = "/";
               location.reload();

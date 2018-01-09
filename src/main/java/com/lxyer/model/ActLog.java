@@ -7,5 +7,15 @@ import com.lxyer.model.base.BaseActLog;
  */
 @SuppressWarnings("serial")
 public class ActLog extends BaseActLog<ActLog> {
-	
+    public static ActLog dao = new ActLog().dao();
+
+    @Override
+    public String sqlSpace() {
+        return "actLog";
+    }
+
+    @Override
+    public ActLog getDao() {
+        return dao;
+    }
 }

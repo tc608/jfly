@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.*;
 import com.jfinal.plugin.redis.Cache;
 import com.jfinal.plugin.redis.Redis;
 import com.lxyer.config.E;
+import com.lxyer.config.JBean;
 import com.lxyer.model.User;
 
 import java.util.ArrayList;
@@ -49,6 +50,10 @@ public class IController extends Controller {
             kv.put(k, getPara(k));
         }
         return kv;
+    }
+
+    public void renderJBean(Object obj){
+        renderJson(new JBean(1, null, obj));
     }
 
     public int getPn(){
@@ -119,6 +124,13 @@ public class IController extends Controller {
         if (str.length() > 0)
             str = str.substring(0, str.length()-1);
         return str;
+    }
+
+    /**
+     * todo:文件上传
+     */
+    public void upFile(){
+
     }
 
 }
