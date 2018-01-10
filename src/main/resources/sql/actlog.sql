@@ -1,8 +1,8 @@
 ### 帖子操作日志 para:[logid, cate, tid, userId, status]
 #sql("actLog.list")
   SELECT al.*
-  FROM `comment` al
-  WHERE al.status!=-1
+  FROM `act_log` al
+  WHERE 1=1
   #if(logid)
     AND al.`logid`=#(logid)
   #end

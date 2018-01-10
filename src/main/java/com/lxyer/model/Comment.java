@@ -1,5 +1,7 @@
 package com.lxyer.model;
 
+import com.jfinal.kit.Kv;
+import com.jfinal.plugin.activerecord.Db;
 import com.lxyer.model.base.BaseComment;
 
 /**
@@ -17,5 +19,13 @@ public class Comment extends BaseComment<Comment> {
 	@Override
 	public Comment getDao() {
 		return dao;
+	}
+
+	/**
+	 * 更新点赞数
+	 * @param commentId
+	 */
+	public static void upSupportNum(Integer commentId) {
+		Db.update(Db.getSqlPara("comment.upSupportNum", Kv.by("commentId", commentId)));
 	}
 }

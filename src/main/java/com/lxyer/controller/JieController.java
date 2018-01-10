@@ -31,7 +31,7 @@ public class JieController extends IController{
         Content content = Content.dao.findFirst(Kv.by("contentId", contentId));
 
         //评论
-        Page<Comment> comments = Comment.dao.findPage(getPn(), getPs(), Kv.by("contentId", contentId));
+        Page<Comment> comments = Comment.dao.findPage(getPn(), getPs(), Kv.by("contentId", contentId).set("login_user_id", getUserId()));
 
         //热议
         List<Content> hotReply = Content.dao.findPage(1, 8, Kv.by("order", "replyNum DESC")).getList();
