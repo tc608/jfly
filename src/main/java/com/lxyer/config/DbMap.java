@@ -32,7 +32,7 @@ public class DbMap {
 
     public static void addSqlTemplate(ActiveRecordPlugin arp) {
         String baseSqlTemplatePath = PathKit.getWebRootPath() + "/WEB-INF/classes/sql/";
-        arp.setBaseSqlTemplatePath(baseSqlTemplatePath);
+        arp.setBaseSqlTemplatePath("sql");
 
         File sqlFiles = new File(baseSqlTemplatePath);
         File[] files = sqlFiles.listFiles();

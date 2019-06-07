@@ -54,7 +54,7 @@ public class FlyConfig extends JFinalConfig {
         DbMap.mapping(arp);
         DbMap.addSqlTemplate(arp);
 
-        me.add(new RedisPlugin(getProperty("redis.cache_name"), getProperty("redis.host"), getPropertyToInt("redis.port"), getPropertyToInt("redis.timeout")));
+        me.add(new RedisPlugin(getProperty("redis.cache_name"), getProperty("redis.host"), getPropertyToInt("redis.port"), getPropertyToInt("redis.timeout"), getProperty("redis.password")));
         me.add(new EhCachePlugin());
     }
 
