@@ -10,9 +10,9 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.hikaricp.HikariCpPlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
+import com.jfinal.server.undertow.UndertowServer;
 import com.jfinal.template.Engine;
 import com.lxyer.config.handler.UrlHandler;
-import com.lxyer.config.interceptor.LoginInterceptor;
 import com.lxyer.config.route.AdminRoute;
 import com.lxyer.config.route.SiteRoute;
 
@@ -73,5 +73,10 @@ public class FlyConfig extends JFinalConfig {
     @Override
     public void configHandler(Handlers me) {
         me.add(new UrlHandler());
+    }
+
+    // 启动入口
+    public static void main(String[] args) {
+        UndertowServer.start(FlyConfig.class);
     }
 }
