@@ -40,7 +40,7 @@ redis.timeout=5000
 5. 运行  
 可直接运行 `FlyConfi.main()` 即可启动，
 6. 访问应用
-`http://localhost:80` (更多启动方式，端口配置，可查询 [jfinal-undertow](jfinal-undertow))
+`http://localhost:80` (更多启动方式，端口配置，可查询 [jfinal-undertow](https://gitee.com/jfinal/jfinal-undertow))
 
 #### 使用说明
 1. 直接在这个的基础上做自己简单的社区开发
